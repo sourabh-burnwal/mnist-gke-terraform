@@ -1,0 +1,21 @@
+FROM nvcr.io/nvidia/pytorch:22.10-py3
+
+ARG DEBIAN_FRONTEND=noninteractive
+RUN apt-get update && \
+    apt-get install -y ffmpeg libsm6 libxext6 && \
+    rm -rf /var/lib/apt/lists/*
+
+RUN rm -rf /opt/pytorch  # remove 1.2GB dir
+
+WORKDIR /app
+
+COPY docker_requirements.txt /app/
+RUN pip install --no-cache-dir -r docker_requirements.txt
+
+COPY ./ /app/
+
+RUN chmod +x entrypoint.sh
+
+EXPOSE 8000
+
+ENTRYPOINT [ "./entrypoint.sh" ]
