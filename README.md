@@ -71,3 +71,8 @@
     kubectl apply -f deployment.yaml
     kubectl apply -f service.yaml
     ```
+
+## Highlights of the implementation
+- Uses both normal and spot instances in the GKE cluster. Can be caliberated according to project requirements
+- Nvidia Tesla T4 is being used as accelerator
+- Infrastructure provisioning using Terraform as IaC ensure versioning and maintainability of the infrastructure
