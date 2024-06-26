@@ -1,4 +1,4 @@
-region="asia-south1"
+region="us-central1"
 clusterName="tf-cluster"
 diskSize=50
 minNode=1

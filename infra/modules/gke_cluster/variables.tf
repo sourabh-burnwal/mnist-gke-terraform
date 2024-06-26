@@ -1,6 +1,6 @@
 variable "region" {
   description = "Deployment region"
-  default = "asia-south1"
+  default = "us-central1"
 }
 variable "clusterName" {
   description = "Name of our Cluster"
