@@ -7,8 +7,7 @@ class Classification:
     def __init__(self):
         self.ort_session = None
         self.model = None
-        # self.device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-        self.device="cpu"
+        self.device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
         print("Using: ", self.device)
 
         # Define a transform to normalize the data
@@ -31,7 +30,10 @@ class Classification:
 
     def predict(self, image_path: str):
         image_tensor = self.pre_process(image_path)
-        out = self.model(image_tensor.cuda())
+        if self.device != "cpu":
+            out = self.model(image_tensor.cuda())
+        else:
+            out = self.model(image_tensor)
         # print(out)
         ps = torch.exp(out)
         probab = list(ps.detach().cpu().numpy()[0])
