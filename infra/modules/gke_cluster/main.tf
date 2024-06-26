@@ -63,10 +63,10 @@ resource "google_container_node_pool" "primary_nodes" {
       "https://www.googleapis.com/auth/logging.write",
       "https://www.googleapis.com/auth/monitoring"
     ]
-  }
-  guest_accelerator {
-    type = nvidia-tesla-t4
+    guest_accelerator {
+    type = "nvidia-tesla-t4"
     count = 1
+    }
   }
 }
 
@@ -101,9 +101,9 @@ resource "google_container_node_pool" "secondary_nodes" {
       "https://www.googleapis.com/auth/logging.write",
       "https://www.googleapis.com/auth/monitoring",
     ]
-  }
-  guest_accelerator {
-    type = nvidia-tesla-t4
+    guest_accelerator {
+    type = "nvidia-tesla-t4"
     count = 1
+    }
   }
 }
